@@ -1,0 +1,42 @@
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<form action="add_course" method="POST">
+
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="teacher" placeholder="teacher">
+    <input type="text" name="level" placeholder="level">
+    <button type="submit">Save</button>
+
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Course Name</td>
+            <td>Teacher Name</td>
+            <td>Level</td>
+            <td>Operations</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.1}}</td>
+            <td>{{ course.2}}</td>
+            <td>{{ course.3}}</td>
+            <td>
+                <a href="/edit/{{ course.0 }}">Edit</a>
+                <a href="/delete/{{ course.0 }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
